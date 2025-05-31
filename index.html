@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ پیشنهاد مدل موی بافت ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Lalezar&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #FFD700, #FFC0CB, #F5E6CC); /* طلایی، صورتی، بژ */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .lalezar-font {
+            font-family: 'Lalezar', cursive;
+        }
+        select, button {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .suggestion-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: right;
+        }
+        .suggestion-card h3 {
+            font-family: 'Lalezar', cursive;
+            color: #C8A2C8; /* Lilac */
+        }
+        /* Loading spinner styles */
+        .loader {
+            border: 5px solid #f3f3f3; /* Light grey */
+            border-top: 5px solid #FFC0CB; /* Pink */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Simple modal for API key info */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .close-button {
+            color: #aaa;
+            float: left; /* Position to the left for RTL */
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="lalezar-font text-4xl text-pink-500 mb-6">✨ پیشنهاد مدل موی بافت ✨</h1>
+        <p class="mb-4 text-gray-700">به ما بگویید چه چیزی در ذهن دارید تا بهترین مدل‌های بافت مو را به شما پیشنهاد دهیم!</p>
+
+        <div class="space-y-4 mb-6">
+            <div>
+                <label for="occasion" class="block text-right mb-1 font-semibold text-gray-700">مناسبت:</label>
+                <select id="occasion" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
+                    <option value="عروسی">عروسی</option>
+                    <option value="مهمانی">مهمانی رسمی/نیمه‌رسمی</option>
+                    <option value="روزمره">روزمره و کژوال</option>
+                    <option value="اسپرت">اسپرت و فعالیت</option>
+                    <option value="فانتزی">فانتزی و خاص</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="hairLength" class="block text-right mb-1 font-semibold text-gray-700">طول مو:</label>
+                <select id="hairLength" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
+                    <option value="کوتاه">کوتاه (تا روی شانه)</option>
+                    <option value="متوسط">متوسط (تا زیر شانه)</option>
+                    <option value="بلند">بلند (پایین‌تر از شانه)</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="preferredStyle" class="block text-right mb-1 font-semibold text-gray-700">سبک مورد علاقه:</label>
+                <select id="preferredStyle" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
+                    <option value="ساده و شیک">ساده و شیک</option>
+                    <option value="پرکار و مجلسی">پرکار و مجلسی</option>
+                    <option value="بوهمین و رها">بوهمین و رها</option>
+                    <option value="خلاقانه و خاص">خلاقانه و خاص</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="getSuggestionBtn" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+            ✨ دریافت پیشنهاد مدل مو ✨
+        </button>
+        <p class="text-xs text-gray-500 mt-2">
+            <span onclick="document.getElementById('apiKeyModal').style.display='block'" class="cursor-pointer underline">اطلاعات API Key</span>
+        </p>
+
+        <div id="loadingSpinner" class="loader" style="display: none;"></div>
+        <div id="suggestionsResult" class="mt-6">
+            </div>
+        <div id="errorMessage" class="mt-4 text-red-600 font-semibold" style="display: none;"></div>
+    </div>
+
+    <div id="apiKeyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="document.getElementById('apiKeyModal').style.display='none'">&times;</span>
+            <h2 class="lalezar-font text-2xl text-pink-500 mb-3">اطلاعات API Key</h2>
+            <p class="text-sm text-gray-700 text-right">
+                این اپلیکیشن از مدل `gemini-2.0-flash` استفاده می‌کند که در حال حاضر نیازی به API Key جداگانه در این محیط ندارد.
+                <br><br>
+                اگر می‌خواهید از مدل‌های دیگر Gemini استفاده کنید یا این کد را در محیط دیگری اجرا نمایید، ممکن است نیاز به دریافت و وارد کردن API Key خود از Google AI Studio داشته باشید. در آن صورت، متغیر `apiKey` را در کد مقداردهی کنید.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const getSuggestionBtn = document.getElementById('getSuggestionBtn');
+        const occasionSelect = document.getElementById('occasion');
+        const hairLengthSelect = document.getElementById('hairLength');
+        const preferredStyleSelect = document.getElementById('preferredStyle');
+        const suggestionsResultDiv = document.getElementById('suggestionsResult');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessageDiv = document.getElementById('errorMessage');
+
+        getSuggestionBtn.addEventListener('click', fetchHairstyleSuggestions);
+
+        async function fetchHairstyleSuggestions() {
+            suggestionsResultDiv.innerHTML = ''; // Clear previous results
+            errorMessageDiv.style.display = 'none'; // Clear previous errors
+            loadingSpinner.style.display = 'block'; // Show spinner
+
+            const occasion = occasionSelect.value;
+            const hairLength = hairLengthSelect.value;
+            const preferredStyle = preferredStyleSelect.value;
+
+            // Construct the prompt for Gemini API
+            const prompt = `با توجه به ترجیحات زیر، سه مدل موی بافت مناسب همراه با نام مدل، توضیحات کوتاه (حداکثر ۳۰ کلمه برای هر مدل) و مناسبت‌های پیشنهادی برای هر کدام پیشنهاد بده:
+            - مناسبت اصلی کاربر: ${occasion}
+            - طول موی کاربر: ${hairLength}
+            - سبک مورد علاقه کاربر: ${preferredStyle}
+
+            پاسخ را فقط و فقط به صورت یک آرایه JSON معتبر شامل سه شیء ارائه بده. هر شیء باید شامل کلیدهای "styleName" (رشته)، "description" (رشته)، و "suitableFor" (رشته، شامل مناسبت‌های پیشنهادی) باشد. از هیچ متن اضافی قبل یا بعد از آرایه JSON استفاده نکن.`;
+            
+            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "styleName": { "type": "STRING", "description": "نام مدل موی بافت پیشنهادی" },
+                                "description": { "type": "STRING", "description": "توضیح کوتاه در مورد مدل و ویژگی‌های آن" },
+                                "suitableFor": { "type": "STRING", "description": "مناسبت‌ها یا موقعیت‌هایی که این مدل برای آن‌ها مناسب است" }
+                            },
+                            required: ["styleName", "description", "suitableFor"]
+                        }
+                    }
+                }
+            };
+
+            // IMPORTANT: If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, 
+            // provide an API key here. Otherwise, leave this as-is.
+            // For example, to use gemini-1.5-flash: const apiKey = "YOUR_API_KEY";
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorBody = await response.text();
+                    console.error('API Error Response:', errorBody);
+                    throw new Error(`خطا در برقراری ارتباط با سرور: ${response.status} ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0 &&
+                    result.candidates[0].content.parts[0].text) {
+                    
+                    const jsonResponseText = result.candidates[0].content.parts[0].text;
+                    // Attempt to parse the JSON. It might be wrapped in markdown-like backticks.
+                    let suggestions = [];
+                    try {
+                        // Remove potential markdown backticks if present
+                        const cleanedJsonResponseText = jsonResponseText.replace(/^```json\s*|```$/g, '');
+                        suggestions = JSON.parse(cleanedJsonResponseText);
+                    } catch (parseError) {
+                        console.error("خطا در تجزیه پاسخ JSON:", parseError, "متن پاسخ:", jsonResponseText);
+                        errorMessageDiv.textContent = "متاسفانه در پردازش پاسخ مشکلی پیش آمد. لطفا دوباره تلاش کنید.";
+                        errorMessageDiv.style.display = 'block';
+                        loadingSpinner.style.display = 'none';
+                        return;
+                    }
+                    displaySuggestions(suggestions);
+
+                } else {
+                    console.error('پاسخ دریافتی از API ساختار مورد انتظار را ندارد:', result);
+                    errorMessageDiv.textContent = "متاسفانه پاسخی دریافت نشد یا ساختار پاسخ نامعتبر است.";
+                    errorMessageDiv.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('خطا در دریافت پیشنهادات:', error);
+                errorMessageDiv.textContent = `خطایی رخ داد: ${error.message}. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.`;
+                errorMessageDiv.style.display = 'block';
+            } finally {
+                loadingSpinner.style.display = 'none'; // Hide spinner
+            }
+        }
+
+        function displaySuggestions(suggestions) {
+            if (!suggestions || suggestions.length === 0) {
+                suggestionsResultDiv.innerHTML = '<p class="text-gray-600">متاسفانه پیشنهادی مطابق با انتخاب شما یافت نشد. لطفا گزینه‌های دیگری را امتحان کنید.</p>';
+                return;
+            }
+
+            suggestions.forEach(suggestion => {
+                const card = document.createElement('div');
+                card.className = 'suggestion-card animate-fadeIn'; // Added animation class
+                
+                const nameEl = document.createElement('h3');
+                nameEl.className = 'text-2xl mb-2';
+                nameEl.textContent = suggestion.styleName || "بدون نام";
+
+                const descEl = document.createElement('p');
+                descEl.className = 'text-gray-700 mb-2';
+                descEl.textContent = suggestion.description || "بدون توضیحات";
+
+                const suitableEl = document.createElement('p');
+                suitableEl.className = 'text-sm text-pink-500 font-semibold';
+                suitableEl.textContent = `مناسب برای: ${suggestion.suitableFor || "نامشخص"}`;
+                
+                card.appendChild(nameEl);
+                card.appendChild(descEl);
+                card.appendChild(suitableEl);
+                suggestionsResultDiv.appendChild(card);
+            });
+             // Add a simple fade-in animation
+            const styleSheet = document.createElement("style");
+            styleSheet.type = "text/css";
+            styleSheet.innerText = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+
+        // Close modal if clicked outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('apiKeyModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
