@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ پیشنهاد مدل موی بافت ✨</title>
+    <title>Hairvana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Lalezar&display=swap" rel="stylesheet">
     <style>
@@ -19,12 +19,12 @@
             box-sizing: border-box;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
             text-align: center;
         }
         .lalezar-font {
@@ -35,77 +35,73 @@
         }
         .suggestion-card {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: right;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .suggestion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .suggestion-card h3 {
             font-family: 'Lalezar', cursive;
-            color: #C8A2C8; /* Lilac */
+            color: #D194C7;
+            font-size: 1.8rem;
         }
-        /* Loading spinner styles */
-        .loader {
-            border: 5px solid #f3f3f3; /* Light grey */
-            border-top: 5px solid #FFC0CB; /* Pink */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        .suggestion-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .suggestion-card .tags {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 10px;
         }
-        /* Simple modal for API key info */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
+        .suggestion-card .tags span {
+            background-color: #f0f0f0;
+            padding: 3px 8px;
             border-radius: 10px;
-            text-align: center;
+            margin-left: 5px; /* فاصله بین تگ‌ها */
+            display: inline-block; /* برای نمایش بهتر تگ‌ها در چند خط */
+            margin-bottom: 5px; /* فاصله عمودی بین تگ‌ها */
         }
-        .close-button {
-            color: #aaa;
-            float: left; /* Position to the left for RTL */
-            font-size: 28px;
-            font-weight: bold;
+        .form-label {
+            display: block;
+            text-align: right;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
         }
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .no-results {
+            color: #777;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        /* .img-placeholder class is removed as images are no longer displayed */
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="lalezar-font text-4xl text-pink-500 mb-6">✨ پیشنهاد مدل موی بافت ✨</h1>
-        <p class="mb-4 text-gray-700">به ما بگویید چه چیزی در ذهن دارید تا بهترین مدل‌های بافت مو را به شما پیشنهاد دهیم!</p>
+        <h1 class="lalezar-font text-4xl md:text-5xl text-pink-500 mb-6">✨ Hairvana ✨</h1>
+        <p class="mb-6 text-gray-700">با انتخاب گزینه‌های زیر، مدل‌های بافت موی مناسب خود را از گالری ما پیدا کنید!</p>
 
-        <div class="space-y-4 mb-6">
+        <div class="space-y-5 mb-8">
             <div>
-                <label for="occasion" class="block text-right mb-1 font-semibold text-gray-700">مناسبت:</label>
-                <select id="occasion" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
-                    <option value="عروسی">عروسی</option>
+                <label for="occasion" class="form-label">مناسبت:</label>
+                <select id="occasion" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition-all">
+                    <option value="همه">همه مناسبت‌ها</option>
+                    <option value="عروسی">عروسی و نامزدی</option>
                     <option value="مهمانی">مهمانی رسمی/نیمه‌رسمی</option>
                     <option value="روزمره">روزمره و کژوال</option>
                     <option value="اسپرت">اسپرت و فعالیت</option>
@@ -114,8 +110,9 @@
             </div>
 
             <div>
-                <label for="hairLength" class="block text-right mb-1 font-semibold text-gray-700">طول مو:</label>
-                <select id="hairLength" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
+                <label for="hairLength" class="form-label">طول مو:</label>
+                <select id="hairLength" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition-all">
+                    <option value="همه">همه طول‌ها</option>
                     <option value="کوتاه">کوتاه (تا روی شانه)</option>
                     <option value="متوسط">متوسط (تا زیر شانه)</option>
                     <option value="بلند">بلند (پایین‌تر از شانه)</option>
@@ -123,192 +120,212 @@
             </div>
 
             <div>
-                <label for="preferredStyle" class="block text-right mb-1 font-semibold text-gray-700">سبک مورد علاقه:</label>
-                <select id="preferredStyle" class="w-full p-2 border border-gray-300 rounded-md focus:ring-pink-400 focus:border-pink-400">
-                    <option value="ساده و شیک">ساده و شیک</option>
-                    <option value="پرکار و مجلسی">پرکار و مجلسی</option>
-                    <option value="بوهمین و رها">بوهمین و رها</option>
-                    <option value="خلاقانه و خاص">خلاقانه و خاص</option>
+                <label for="preferredStyle" class="form-label">سبک مورد علاقه:</label>
+                <select id="preferredStyle" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition-all">
+                    <option value="همه">همه سبک‌ها</option>
+                    <option value="ساده">ساده و شیک</option>
+                    <option value="پرکار">پرکار و مجلسی</option>
+                    <option value="بوهمین">بوهمین و رها</option>
+                    <option value="خلاقانه">خلاقانه و خاص</option>
+                    <option value="کلاسیک">کلاسیک و باوقار</option>
                 </select>
             </div>
         </div>
 
-        <button id="getSuggestionBtn" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-            ✨ دریافت پیشنهاد مدل مو ✨
+        <button id="getSuggestionBtn" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+            جستجوی مدل مو
         </button>
-        <p class="text-xs text-gray-500 mt-2">
-            <span onclick="document.getElementById('apiKeyModal').style.display='block'" class="cursor-pointer underline">اطلاعات API Key</span>
-        </p>
 
-        <div id="loadingSpinner" class="loader" style="display: none;"></div>
-        <div id="suggestionsResult" class="mt-6">
+        <div id="suggestionsResult" class="mt-8">
             </div>
-        <div id="errorMessage" class="mt-4 text-red-600 font-semibold" style="display: none;"></div>
-    </div>
-
-    <div id="apiKeyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="document.getElementById('apiKeyModal').style.display='none'">&times;</span>
-            <h2 class="lalezar-font text-2xl text-pink-500 mb-3">اطلاعات API Key</h2>
-            <p class="text-sm text-gray-700 text-right">
-                این اپلیکیشن از مدل `gemini-2.0-flash` استفاده می‌کند که در حال حاضر نیازی به API Key جداگانه در این محیط ندارد.
-                <br><br>
-                اگر می‌خواهید از مدل‌های دیگر Gemini استفاده کنید یا این کد را در محیط دیگری اجرا نمایید، ممکن است نیاز به دریافت و وارد کردن API Key خود از Google AI Studio داشته باشید. در آن صورت، متغیر `apiKey` را در کد مقداردهی کنید.
-            </p>
-        </div>
     </div>
 
     <script>
+        // مجموعه داده‌های از پیش تعریف شده برای مدل‌های مو
+        const hairstyleDatabase = [
+            {
+                id: 1,
+                styleName: "بافت فرانسوی کلاسیک",
+                description: "یک انتخاب همیشگی و زیبا که برای اکثر مناسبت‌ها، از روزمره تا رسمی، فوق‌العاده است. ظرافت و سادگی را به موهای شما هدیه می‌دهد.",
+                suitableFor: "روزمره، مهمانی، عروسی (به عنوان مهمان)",
+                occasionTags: ["روزمره", "مهمانی", "عروسی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["ساده", "کلاسیک"]
+                // imagePlaceholder field removed
+            },
+            {
+                id: 2,
+                styleName: "بافت تیغ ماهی (فیش‌تیل)",
+                description: "بافتی جذاب و چشم‌نواز که ظاهری پیچیده‌تر دارد اما بسیار شیک است. مناسب برای مهمانی‌ها و موقعیت‌هایی که می‌خواهید بدرخشید.",
+                suitableFor: "مهمانی، فانتزی، عروسی",
+                occasionTags: ["مهمانی", "فانتزی", "عروسی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["پرکار", "خلاقانه"]
+            },
+            {
+                id: 3,
+                styleName: "بافت هلندی حجیم",
+                description: "این بافت به دلیل قرار گرفتن روی سطح مو، حجم بیشتری به موها می‌دهد و برای موهای کم‌پشت عالی است. استایلی مدرن و جذاب.",
+                suitableFor: "روزمره، مهمانی، اسپرت",
+                occasionTags: ["روزمره", "مهمانی", "اسپرت"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["ساده", "خلاقانه"]
+            },
+            {
+                id: 4,
+                styleName: "بافت آبشاری",
+                description: "بافتی رمانتیک و دخترانه که در آن بخشی از موها به صورت آبشاری رها می‌شوند. ایده‌آل برای مناسبت‌های خاص و عکس‌های زیبا.",
+                suitableFor: "مهمانی، عروسی، فانتزی",
+                occasionTags: ["مهمانی", "عروسی", "فانتزی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["بوهمین", "پرکار"]
+            },
+            {
+                id: 5,
+                styleName: "بافت تاج (هیلو بِرِید)",
+                description: "بافتی که مانند یک تاج دور سر قرار می‌گیرد. بسیار شیک و مناسب برای عروس‌ها یا مهمانی‌های بسیار رسمی.",
+                suitableFor: "عروسی، مهمانی رسمی",
+                occasionTags: ["عروسی", "مهمانی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["پرکار", "کلاسیک", "بوهمین"]
+            },
+            {
+                id: 6,
+                styleName: "بافت‌های ریز آفریقایی (باکسر بِرِید)",
+                description: "برای استایلی اسپرت، جسورانه و ماندگار. این بافت‌ها می‌توانند برای چند روز روی مو باقی بمانند و برای فعالیت‌های ورزشی عالی هستند.",
+                suitableFor: "اسپرت، روزمره، فانتزی",
+                occasionTags: ["اسپرت", "روزمره", "فانتزی"],
+                lengthTags: ["کوتاه", "متوسط", "بلند"],
+                styleTags: ["خلاقانه", "ساده"]
+            },
+            {
+                id: 7,
+                styleName: "شینیون بافت‌دار مجلسی",
+                description: "ترکیبی از شینیون و بافت‌های ظریف که استایلی بسیار لوکس و مناسب برای عروس‌ها و ساقدوش‌ها ایجاد می‌کند. نیاز به مهارت و دقت بالا دارد.",
+                suitableFor: "عروسی، مهمانی بسیار رسمی",
+                occasionTags: ["عروسی", "مهمانی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["پرکار", "کلاسیک"]
+            },
+            {
+                id: 8,
+                styleName: "بافت یک طرفه ساده",
+                description: "یک راه سریع و آسان برای ایجاد تنوع در موهای باز. بافتی که از یک سمت سر شروع شده و به سمت دیگر ادامه پیدا می‌کند یا رها می‌شود.",
+                suitableFor: "روزمره، مهمانی نیمه‌رسمی",
+                occasionTags: ["روزمره", "مهمانی"],
+                lengthTags: ["کوتاه", "متوسط", "بلند"],
+                styleTags: ["ساده", "بوهمین"]
+            },
+            {
+                id: 9,
+                styleName: "بافت طنابی (روپ بِرِید)",
+                description: "بافتی دولا که ظاهری شبیه به طناب دارد. ساده اما متفاوت، مناسب برای استایل‌های کژوال و اسپرت.",
+                suitableFor: "روزمره، اسپرت",
+                occasionTags: ["روزمره", "اسپرت"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["ساده"]
+            },
+            {
+                id: 10,
+                styleName: "بافت با اضافه کردن موی رنگی فانتزی",
+                description: "با اضافه کردن موهای مصنوعی رنگی به بافت‌های مختلف، می‌توانید استایلی بسیار خاص، جوان‌پسند و فانتزی داشته باشید.",
+                suitableFor: "فانتزی، مهمانی خاص، فستیوال",
+                occasionTags: ["فانتزی", "مهمانی"],
+                lengthTags: ["کوتاه", "متوسط", "بلند"],
+                styleTags: ["خلاقانه", "پرکار"]
+            },
+             {
+                id: 11,
+                styleName: "بافت ساده برای موی کوتاه",
+                description: "حتی با موهای کوتاه هم می‌توان بافت‌های زیبایی داشت. یک بافت کوچک در کنار سر یا بالای پیشانی می‌تواند تفاوت زیادی ایجاد کند.",
+                suitableFor: "روزمره، مهمانی نیمه‌رسمی",
+                occasionTags: ["روزمره", "مهمانی"],
+                lengthTags: ["کوتاه"],
+                styleTags: ["ساده", "خلاقانه"]
+            },
+            {
+                id: 12,
+                styleName: "بافت بوهمین با اکسسوری",
+                description: "بافت‌های شل و آزاد به سبک بوهمین که با گل‌های طبیعی، ریسه‌ها یا سنجاق‌های خاص تزئین شده‌اند. بسیار مناسب برای عکاسی در طبیعت.",
+                suitableFor: "فانتزی, عروسی (سبک بوهمین), مهمانی",
+                occasionTags: ["فانتزی", "عروسی", "مهمانی"],
+                lengthTags: ["متوسط", "بلند"],
+                styleTags: ["بوهمین", "خلاقانه"]
+            }
+        ];
+
         const getSuggestionBtn = document.getElementById('getSuggestionBtn');
         const occasionSelect = document.getElementById('occasion');
         const hairLengthSelect = document.getElementById('hairLength');
         const preferredStyleSelect = document.getElementById('preferredStyle');
         const suggestionsResultDiv = document.getElementById('suggestionsResult');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        const errorMessageDiv = document.getElementById('errorMessage');
 
-        getSuggestionBtn.addEventListener('click', fetchHairstyleSuggestions);
+        getSuggestionBtn.addEventListener('click', findHairstyleSuggestions);
 
-        async function fetchHairstyleSuggestions() {
-            suggestionsResultDiv.innerHTML = ''; // Clear previous results
-            errorMessageDiv.style.display = 'none'; // Clear previous errors
-            loadingSpinner.style.display = 'block'; // Show spinner
+        // نمایش همه پیشنهادها در ابتدا
+        displaySuggestions(hairstyleDatabase);
 
-            const occasion = occasionSelect.value;
-            const hairLength = hairLengthSelect.value;
-            const preferredStyle = preferredStyleSelect.value;
 
-            // Construct the prompt for Gemini API
-            const prompt = `با توجه به ترجیحات زیر، سه مدل موی بافت مناسب همراه با نام مدل، توضیحات کوتاه (حداکثر ۳۰ کلمه برای هر مدل) و مناسبت‌های پیشنهادی برای هر کدام پیشنهاد بده:
-            - مناسبت اصلی کاربر: ${occasion}
-            - طول موی کاربر: ${hairLength}
-            - سبک مورد علاقه کاربر: ${preferredStyle}
+        function findHairstyleSuggestions() {
+            const selectedOccasion = occasionSelect.value;
+            const selectedHairLength = hairLengthSelect.value;
+            const selectedPreferredStyle = preferredStyleSelect.value;
 
-            پاسخ را فقط و فقط به صورت یک آرایه JSON معتبر شامل سه شیء ارائه بده. هر شیء باید شامل کلیدهای "styleName" (رشته)، "description" (رشته)، و "suitableFor" (رشته، شامل مناسبت‌های پیشنهادی) باشد. از هیچ متن اضافی قبل یا بعد از آرایه JSON استفاده نکن.`;
-            
-            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-            const payload = {
-                contents: chatHistory,
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "ARRAY",
-                        items: {
-                            type: "OBJECT",
-                            properties: {
-                                "styleName": { "type": "STRING", "description": "نام مدل موی بافت پیشنهادی" },
-                                "description": { "type": "STRING", "description": "توضیح کوتاه در مورد مدل و ویژگی‌های آن" },
-                                "suitableFor": { "type": "STRING", "description": "مناسبت‌ها یا موقعیت‌هایی که این مدل برای آن‌ها مناسب است" }
-                            },
-                            required: ["styleName", "description", "suitableFor"]
-                        }
-                    }
-                }
-            };
-
-            // IMPORTANT: If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, 
-            // provide an API key here. Otherwise, leave this as-is.
-            // For example, to use gemini-1.5-flash: const apiKey = "YOUR_API_KEY";
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorBody = await response.text();
-                    console.error('API Error Response:', errorBody);
-                    throw new Error(`خطا در برقراری ارتباط با سرور: ${response.status} ${response.statusText}`);
-                }
-
-                const result = await response.json();
+            const filteredSuggestions = hairstyleDatabase.filter(hairstyle => {
+                const occasionMatch = selectedOccasion === "همه" || hairstyle.occasionTags.includes(selectedOccasion);
+                const lengthMatch = selectedHairLength === "همه" || hairstyle.lengthTags.includes(selectedHairLength);
+                const styleMatch = selectedPreferredStyle === "همه" || hairstyle.styleTags.includes(selectedPreferredStyle);
                 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0 &&
-                    result.candidates[0].content.parts[0].text) {
-                    
-                    const jsonResponseText = result.candidates[0].content.parts[0].text;
-                    // Attempt to parse the JSON. It might be wrapped in markdown-like backticks.
-                    let suggestions = [];
-                    try {
-                        // Remove potential markdown backticks if present
-                        const cleanedJsonResponseText = jsonResponseText.replace(/^```json\s*|```$/g, '');
-                        suggestions = JSON.parse(cleanedJsonResponseText);
-                    } catch (parseError) {
-                        console.error("خطا در تجزیه پاسخ JSON:", parseError, "متن پاسخ:", jsonResponseText);
-                        errorMessageDiv.textContent = "متاسفانه در پردازش پاسخ مشکلی پیش آمد. لطفا دوباره تلاش کنید.";
-                        errorMessageDiv.style.display = 'block';
-                        loadingSpinner.style.display = 'none';
-                        return;
-                    }
-                    displaySuggestions(suggestions);
+                return occasionMatch && lengthMatch && styleMatch;
+            });
 
-                } else {
-                    console.error('پاسخ دریافتی از API ساختار مورد انتظار را ندارد:', result);
-                    errorMessageDiv.textContent = "متاسفانه پاسخی دریافت نشد یا ساختار پاسخ نامعتبر است.";
-                    errorMessageDiv.style.display = 'block';
-                }
-
-            } catch (error) {
-                console.error('خطا در دریافت پیشنهادات:', error);
-                errorMessageDiv.textContent = `خطایی رخ داد: ${error.message}. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.`;
-                errorMessageDiv.style.display = 'block';
-            } finally {
-                loadingSpinner.style.display = 'none'; // Hide spinner
-            }
+            displaySuggestions(filteredSuggestions);
         }
 
         function displaySuggestions(suggestions) {
+            suggestionsResultDiv.innerHTML = ''; // Clear previous results
+
             if (!suggestions || suggestions.length === 0) {
-                suggestionsResultDiv.innerHTML = '<p class="text-gray-600">متاسفانه پیشنهادی مطابق با انتخاب شما یافت نشد. لطفا گزینه‌های دیگری را امتحان کنید.</p>';
+                suggestionsResultDiv.innerHTML = '<p class="no-results">متاسفانه مدلی مطابق با انتخاب شما در گالری ما یافت نشد. لطفاً گزینه‌های دیگری را امتحان کنید یا همه مدل‌ها را مشاهده نمایید.</p>';
                 return;
             }
 
             suggestions.forEach(suggestion => {
                 const card = document.createElement('div');
-                card.className = 'suggestion-card animate-fadeIn'; // Added animation class
+                card.className = 'suggestion-card animate-fadeIn';
                 
+                // Image placeholder is removed from here
+                // const imgDiv = document.createElement('div');
+                // imgDiv.className = 'img-placeholder';
+                // imgDiv.textContent = suggestion.imagePlaceholder || "[تصویر مدل مو]";
+                // card.appendChild(imgDiv);
+
                 const nameEl = document.createElement('h3');
-                nameEl.className = 'text-2xl mb-2';
-                nameEl.textContent = suggestion.styleName || "بدون نام";
+                nameEl.className = 'text-2xl mb-2'; // Added margin bottom
+                nameEl.textContent = suggestion.styleName;
+                card.appendChild(nameEl);
 
                 const descEl = document.createElement('p');
-                descEl.className = 'text-gray-700 mb-2';
-                descEl.textContent = suggestion.description || "بدون توضیحات";
+                descEl.className = 'text-gray-700 mb-3';
+                descEl.textContent = suggestion.description;
+                card.appendChild(descEl);
 
                 const suitableEl = document.createElement('p');
-                suitableEl.className = 'text-sm text-pink-500 font-semibold';
-                suitableEl.textContent = `مناسب برای: ${suggestion.suitableFor || "نامشخص"}`;
-                
-                card.appendChild(nameEl);
-                card.appendChild(descEl);
+                suitableEl.className = 'text-sm text-pink-600 font-semibold mb-3';
+                suitableEl.innerHTML = `<strong>مناسب برای:</strong> ${suggestion.suitableFor}`;
                 card.appendChild(suitableEl);
+                
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'tags';
+                let tagsHTML = '<strong>برچسب‌ها:</strong> ';
+                suggestion.occasionTags.forEach(tag => tagsHTML += `<span>${tag}</span> `);
+                suggestion.lengthTags.forEach(tag => tagsHTML += `<span>${tag}</span> `);
+                suggestion.styleTags.forEach(tag => tagsHTML += `<span>${tag}</span> `);
+                tagsDiv.innerHTML = tagsHTML;
+                card.appendChild(tagsDiv);
+
                 suggestionsResultDiv.appendChild(card);
             });
-             // Add a simple fade-in animation
-            const styleSheet = document.createElement("style");
-            styleSheet.type = "text/css";
-            styleSheet.innerText = `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
-            `;
-            document.head.appendChild(styleSheet);
-        }
-
-        // Close modal if clicked outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('apiKeyModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
         }
     </script>
 </body>
